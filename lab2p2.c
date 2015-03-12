@@ -35,19 +35,20 @@ volatile states state = waitForPass;
 
 int main(void)
 {
-        //char currChar;
 	char pass[4];
 	int numPasses = 0;
 	int newPassEnter = 0;
+        int charNum = 0;
+        int i=0;
+        char currChar = 'a';
+
+        //initialize database to invalid, but safe, passwords:
 	char passDB[][4] = { {'a','a','a','a'}, {'a','a','a','a'}, {'a','a','a','a'}, {'a','a','a','a'} };
-        //int printNum = 0;
-	int charNum = 0;
+	
         initTimer1();
         initTimer2();
         initKeypad();
         initLCD();
-        int i=0;
-        char currChar = 'a';
 
     while(1){
         switch(state){

@@ -2,21 +2,11 @@
 #include "keypad.h"
 #include "timer.h"
 
-//typedef enum buttonsEnum{
-//    none, pound, star, one, two, three,
-//    four, five, six, seven, eight, nine, zero
-//} buttons;
 
-
-//TODO: confirm pin 17 can be used as output!
-
-/* Initialize the rows as ODC outputs and the columns as inputs with pull-up
- * resistors. Don't forget about other considerations...
- */
- //Other considerations: explicitly defining pins to be digital input (instead of analog)
-
-
-void initKeypad(void){
+void initKeypad(void)
+{
+    //initializes keypad, all defined statements are in header
+    
     //Rows as outputs:
     TRIS_ROW1 = 0;
     TRIS_ROW2 = 0;
@@ -27,10 +17,6 @@ void initKeypad(void){
     TRIS_COL1 = 1;
     TRIS_COL2 = 1;
     TRIS_COL3 = 1;
-
-//    AD1PCFGbits.PCFG0 = 1;
-//    AD1PCFGbits.PCFG2 = 1;
-  //  AD1PCFGbits. = 1;//set as digital input
 
     //ODC outputs:
     ODC_ROW1 = 1;
@@ -65,7 +51,8 @@ void initKeypad(void){
  * no key is pressed at all. Otherwise, it should return the ASCII character of
  * the key that is pressed.
  */
-char scanKeypad(void){
+char scanKeypad(void)
+{
     char key = -1;
     
     int listenCol = 0;

@@ -2,7 +2,7 @@
 
 int checkValidChar(char c)
 //This checks if the char is a valid number
-//This should ONLY be called if we REQUIRE a number (like when entering a new password)
+//This should ONLY be called if we REQUIRE only a NUMBER (like when entering a new password)
 {
 	int valid = 0;
         
@@ -28,12 +28,11 @@ void placeNewPassword(char passDB[][4], char newPass[], int pos)
 }
 
 
-int checkPass(char passDB[][4],char pass[]){
-
+int checkPass(char passDB[][4],char pass[])
+//this checks the password database to see if a valid entered password is correct
+{
     int i,j;
     int valid = 0;
-    char DBel = 'a';
-    char passEl = 'a';
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
             if(pass[j] != passDB[i][j]){

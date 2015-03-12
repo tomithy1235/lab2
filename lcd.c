@@ -10,8 +10,6 @@
 #include "timer.h"
 #include <stdio.h>
 #define LCD_DATA   LATB
-//#define LCD_RS  LATBbits.LATB7
-//#define LCD_E   LATBbits.LATB6
 #define LCD_RS  LATBbits.LATB11
 #define LCD_E   LATBbits.LATB10
 #define LCD_WRITE_CONTROL 0
@@ -22,8 +20,6 @@
 #define TRIS_D6  TRISBbits.TRISB14
 #define TRIS_D5  TRISBbits.TRISB13
 #define TRIS_D4  TRISBbits.TRISB12
-//#define TRIS_RS  TRISBbits.TRISB7
-//#define TRIS_E   TRISBbits.TRISB6
 #define TRIS_RS  TRISBbits.TRISB11
 #define TRIS_E   TRISBbits.TRISB10
 
@@ -57,19 +53,7 @@ void writeLCD(unsigned char word, unsigned int commandType, unsigned int delayAf
     
     writeFourBits(word, commandType, delayAfter, 0);//sends upper
     writeFourBits(word, commandType, delayAfter, 1);//sends lower
-//    while(1){
-//
-//    char c;
-//   c='V';
-//    writeFourBits(c, commandType, delayAfter, 0);//sends upper
-//    writeFourBits(c, commandType, delayAfter, 1);//sends lower
-//    c='U';
-//    writeFourBits(c, commandType, delayAfter, 0);
-//    writeFourBits(c, commandType, delayAfter, 1);
-//    c='c';
-//    writeFourBits(c, commandType, delayAfter, 0);
-//    writeFourBits(c, commandType, delayAfter, 1);
-//}
+
 }
 
 
@@ -145,47 +129,3 @@ void moveCursorLCD(unsigned char x, unsigned char y)
 
     writeLCD(ADD, LCD_WRITE_CONTROL, 40);
 }
-
-/* This function is called in lab1p2.c for testing purposes.
- * If everything is working properly, you should get this to look like the video on D2L
- * However, it is suggested that you test more than just this one function. */
-void testLCD()
-{
-    int i = 0;
-    printCharLCD('c');
-    for(i = 0; i < 1000; i++) delayUs(1000);
-    clearLCD();
-    printStringLCD("Hello!");
-    moveCursorLCD(1, 1);
-    for(i = 0; i < 1000; i++) delayUs(1000);
-    printStringLCD("Hello!");
-    for(i = 0; i < 1000; i++) delayUs(1000);
-    clearLCD();
-}
-
-/*
-void updateLCDtime(long int count, unsigned int regVal)
-{
-    //This is our version of the getTimeString() function
-    //count is the number of 10ms 'counts'
-
-    //int ms = count%100;
-    int ms = 256.0*100.0*(regVal+1.0)/F_CY;
-    int secs = 0;
-    int mins = 0;
-    //if(count > 100)//this is only necessary for sufficiently long times
-    
-    secs = (count)%60;//gets rid of ms part and the mods out mins
-    mins = count/60;//divides down to the mins
-    
-    
-    char str[8];
-  
-    sprintf(str,"%02d:%02d:%02d",mins,secs,ms);
-    const char* s = str;
-
-    moveCursorLCD(0,1);//so we print on the second line
-    printStringLCD(s);
-    return s;
-}
- * */

@@ -47,6 +47,7 @@
 
 #define ROW_ON 0
 #define ROW_OFF 1
+
 //For the rows (outputs):
 //LOW Z is putting ODC latch to 0
 //HIGH Z is opening the circuit with the ODC, latch is 1
